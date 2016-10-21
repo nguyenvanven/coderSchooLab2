@@ -1,0 +1,43 @@
+<h1> Sign up</h1>
+<div class="container">
+	<p id="notice"><%= notice %></p>
+	<%= form_for @user do |f| %>
+	<% unless @user.errors.empty? %>
+		<div class="alert alert-danger" >
+		Please correct following errors:
+		<% @user.errors.full_messages.each do |message| %>
+			<li><%= message %> </li>
+		<% end %>
+		</div>
+	<% end %>
+
+	<div class="form-horizontal">
+		<div class="form-group row">
+			<label class="control-label col-sm-2">Username:</label>
+			<%= f.text_field :username, class:"col-sm-4", placeholder: "Enter username..." %>
+		</div>
+
+		<div class="form-group row">
+			<label class="control-label col-sm-2">First Name:</label>
+			<%= f.text_field :first_name, class:"col-sm-4", placeholder: "Enter your first name..."%>
+		</div>
+		<div class="form-group row">
+			<label class="control-label col-sm-2">Last Name:</label>
+			<%= f.text_field :last_name, class:"col-sm-4", placeholder:"Enter your last name ..." %>
+		</div>
+		<div class="form-group row">
+			<label class="control-label col-sm-2">Email:</label>
+			<%= f.text_field :email, class:"col-sm-4", placeholder:"Enter you email address..." %>
+		</div>
+		<div class="form-group row">
+			<label class="control-label col-sm-2">Password:</label>
+			<%= f.password_field :password, class:"col-sm-4", placeholder:"Enter your password here..." %>
+		</div>
+		<div class="form-group row">
+			<label class="control-label col-sm-2">Password Confirm:</label>
+			<%= f.password_field :password_confirmation, class:"col-sm-4", placeholder:"Confirm your password here.." %>
+		</div>
+		<%= f.submit "Create account", class:'btn btn-primary' %>
+	</div>
+	<%end%>
+	<div>

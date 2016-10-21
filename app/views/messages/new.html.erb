@@ -1,0 +1,8 @@
+<h1>Compose Message </h1>
+
+<div class="form-inline">
+<%= form_tag messages_path, method:'post' %>
+<%= select_tag :receiver, options_from_collection_for_select(@users,"id","username") %>
+<%= text_field_tag :text %>
+<%= submit_tag "Send" %>
+</div>
