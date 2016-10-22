@@ -1,8 +1,16 @@
 <h1>Compose Message </h1>
 
-<div class="form-inline">
-<%= form_tag messages_path, method:'post' %>
-<%= select_tag :receiver, options_from_collection_for_select(@users,"id","username") %>
-<%= text_field_tag :text %>
-<%= submit_tag "Send" %>
+<div class="container">
+	<div class="form-inline">
+		<%= form_tag messages_path, method:'post' %>
+		<div class="row">
+			<%= label_tag "Receiver: "%>
+			<%= select_tag :receiver, options_from_collection_for_select(@users,"id","full_name") %>
+		</div>
+		<div class="row">
+			<%= label_tag "Content" %>
+			<%= text_area_tag :text %>
+		</div>
+		<%= submit_tag "Send", class: "btn btn-primary" %>
+	</div>
 </div>

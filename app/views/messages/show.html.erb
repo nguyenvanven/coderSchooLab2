@@ -1,0 +1,22 @@
+<h1>All your sent messages</h1>
+<div class="card">
+		<% if @messages.present? %>
+		<% @messages.each do |message| %>
+		
+		<div class="card card-block ">
+		<div class="float-sm-right">
+			<em>To <%= (message.receiver.first_name + " " + message.receiver.last_name) %> </em>:
+			<% if message.read_at.present? %>
+					<%= message.text %>
+					<p class="seen-color">
+					 <%= message.read_at.strftime("(Seen at %d/%m/%Y %H:%M)") %>
+					 </p>
+				<% else %>
+					<strong> <%= message.text%></strong>
+					<% Message.mark_as_read(message) %>
+				<% end %>
+			</div>
+		</div>
+		<% end -%>
+		<% end %>
+	</div>

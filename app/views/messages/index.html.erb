@@ -3,13 +3,15 @@
 	<div class="card">
 		<% if @messages.present? %>
 		<% @messages.each do |message| %>
+		
 		<div class="card card-block ">
 		<div class="float-sm-right">
 			<em> <%= (message.sender_id == current_user.id)? "Me" : (message.sender.first_name + " " + message.sender.last_name) %> </em>:
-			<% if message.is_read %>
+			<% if message.read_at.present? %>
 					<%= message.text%>
 				<% else %>
 					<strong> <%= message.text%></strong>
+					<% Message.mark_as_read(message) %>
 				<% end %>
 			</div>
 		</div>
@@ -19,7 +21,7 @@
 
 	<div class="card card-block">
 		<%= link_to "Compose Message", new_message_path, class: "btn btn-primary" %>
-		<%= link_to "Add Friend", new_message_path, class: "btn btn-primary" %>
+		<%= link_to "Add Friend", friendships_path, class: "btn btn-primary" %>
 	</div>
 	
 </div>

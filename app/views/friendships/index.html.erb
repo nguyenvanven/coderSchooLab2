@@ -1,29 +1,24 @@
-<h1>Friend list </h1>
+<h1>Add friends</h1>
 <div class="container">
 <p id="notice"><%= notice %></p>
-<% if current_user.present? %>
 <table class="table table-striped table-bordered table-condensed"  data-sort-name="username" data-sort-order="desc">
 	<thread>
 		<tr>
 			<th data-field="username" data-sortable="true">Username</th>
 			<th data-field="first_name" data-sortable="true">FullName</th>
 			<th data-field="email" data-sortable="true">Email</th>
+			<th></th>
 		</tr>
 	</thread>
 	<tbody>
-		<% current_user.friendships.each do |friendship| %>
+		<% @users.each do |user| %>
 		<tr>
-			<td><%= friendship.friend.username %></td>
-			<td><%= friendship.friend.first_name + " " + friendship.friend.last_name %></td>
-			<td><%= friendship.friend.email %></td>
+			<td><%= user.username %></td>
+			<td><%= user.first_name + " " + user.last_name %></td>
+			<td><%= user.email %></td>
+			<td> <%= link_to "Add friend", friendships_path(:friend_id=>user.id), method:"post" %> </td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
-
-<% else %>
-	<div >
-		<p> Please login first </p>
-	</div>
-<% end %>
 </div>
