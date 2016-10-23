@@ -7,13 +7,12 @@
 		<div class="float-sm-right">
 			<em>To <%= (message.receiver.first_name + " " + message.receiver.last_name) %> </em>:
 			<% if message.read_at.present? %>
-					<%= message.text %>
+					<%= message.title %>
 					<p class="seen-color">
 					 <%= message.read_at.strftime("(Seen at %d/%m/%Y %H:%M)") %>
 					 </p>
 				<% else %>
 					<strong> <%= message.text%></strong>
-					<% Message.mark_as_read(message) %>
 				<% end %>
 			</div>
 		</div>

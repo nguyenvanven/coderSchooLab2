@@ -8,9 +8,10 @@
 		<div class="float-sm-right">
 			<em> <%= (message.sender_id == current_user.id)? "Me" : (message.sender.first_name + " " + message.sender.last_name) %> </em>:
 			<% if message.read_at.present? %>
-					<%= message.text%>
+					<%= message.title%>
 				<% else %>
-					<strong> <%= message.text%></strong>
+					<strong> <%= message.title %></strong>
+					<p><%= message.text %>
 					<% Message.mark_as_read(message) %>
 				<% end %>
 			</div>

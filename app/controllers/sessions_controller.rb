@@ -3,6 +3,14 @@ class SessionsController < ApplicationController
 	end
 
 	def create
+		if params[:is_facebook]
+			@user = User.from_omniauth(env["omniauth.auth"])
+			@current_user = @user
+			session[:user_id] = @user.id
+			flash[:success] = 'You have logged in successfully'
+			redirect_to messages_path
+			 return
+		end
 		if @user = User.find_by(email: params[:email])
 			if @user.authenticate(params[:password])
 				@current_user = @user

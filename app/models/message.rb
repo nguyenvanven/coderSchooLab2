@@ -4,7 +4,7 @@ class Message < ApplicationRecord
 
 	def self.find_by_user(user_id)
 		if user_id
-		  where("(sender_id=?) or (receiver_id=?)",user_id, user_id).order("created_at desc")
+		  where("receiver_id=?",user_id).order("created_at desc")
 		end
 	end
 
