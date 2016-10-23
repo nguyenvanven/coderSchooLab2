@@ -2,9 +2,15 @@ class Message < ApplicationRecord
 	belongs_to :sender, :class_name=> "User"
 	belongs_to :receiver, :class_name =>"User"
 
-	def self.find_by_user(user_id)
-		if user_id
-		  where("receiver_id=?",user_id).order("created_at desc")
+	def self.find_by_user(user)
+		if user
+			@blocked = user.friendships.where(:is_blocked=>'t').map{|friendship| friendship.friend_id}
+			if @blocked.present?
+		  		where("(receiver_id=?) and (sender_id not in (?))",user.id, @blocked).order("created_at desc")
+		  	else
+		  		where("receiver_id=?",user.id).order("created_at desc")
+		  	end
+
 		end
 	end
 

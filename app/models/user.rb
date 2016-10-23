@@ -4,6 +4,9 @@ class User < ApplicationRecord
 
 	has_many :friendships
 	has_many :friends, :through => :friendships
+
+  has_many :blocked_friendships
+  has_many :blockedFriends, :through => :blocked_friendships
   has_secure_password
   validates :username, presence:true, uniqueness:true
   validates :email, presence:true, uniqueness:{case_insensitive:true}

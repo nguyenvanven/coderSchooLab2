@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   def index
-  	@messages = Message.find_by_user(session[:user_id])
+  	@messages = Message.find_by_user(current_user)
   	#Message.mark_as_read_all(session[:user_id])
   end
 

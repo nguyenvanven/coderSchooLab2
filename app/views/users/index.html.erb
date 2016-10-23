@@ -17,9 +17,18 @@
 				<td><%= friendship.friend.username %></td>
 				<td><%= friendship.friend.first_name + " " + friendship.friend.last_name %></td>
 				<td><%= friendship.friend.email %></td>
-				<td> <%= link_to "Unfriend",  friendships_destroy_path(:id=>friendship.id),
+				<td>
+				<div>
+				 <%= link_to "Unfriend",  friendships_destroy_path(:id=>friendship.id),
 					data:{confirm: 'Are you sure you want to unfriend?', :id=>friendship.id},
 					class:'btn btn-warning'  %>
+					<% if friendship.is_blocked %>
+						<%= link_to "Unblock", unblock_friendship_path(friendship_id:friendship.id), method:"post", class:"btn btn-default" %>
+					<% else %>
+						<%= link_to "Block", block_friendship_path(friendship_id:friendship.id), method:"post", class:"btn btn-default" %>
+					<% end %>
+					</div>
+					</td>
 				</tr>
 				<% end %>
 			</tbody>

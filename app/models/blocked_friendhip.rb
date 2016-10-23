@@ -1,0 +1,2 @@
+class BlockedFriendhip < ApplicationRecord
+end

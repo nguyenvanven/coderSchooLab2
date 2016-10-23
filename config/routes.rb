@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get 'messages/view_sent_messages'
 
   resources :friendships
+  post "block_friendship" => "friendships#block"
+  post "unblock_friendship" => "friendships#unblock"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

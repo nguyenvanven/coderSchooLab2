@@ -20,4 +20,30 @@ class FriendshipsController < ApplicationController
     flash[:success] = "You have removed friend successfully"
     redirect_to users_path
   end
+
+  def block
+    if params[:friendship_id]
+      @friendship = Friendship.find(params[:friendship_id])
+      @friendship.is_blocked = true;
+      @friendship.save
+      flash[:success] = "You have blocked the friend successfully"
+      redirect_to users_path
+      else
+        flash[:error] = "No param valid"
+        render "index"
+    end
+  end
+
+  def unblock
+    if params[:friendship_id]
+      @friendship = Friendship.find(params[:friendship_id])
+      @friendship.is_blocked = false;
+      @friendship.save
+      flash[:success] = "You have blocked the friend successfully"
+      redirect_to users_path
+      else
+        flash[:error] = "No param valid"
+        render "index"
+    end
+  end
 end
