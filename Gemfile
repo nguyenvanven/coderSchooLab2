@@ -51,3 +51,7 @@ gem 'bootstrap', '~> 4.0.0.alpha4'
 
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
+
+# For authentication
+gem 'omniauth'
+gem 'omniauth-facebook', '1.4.0'

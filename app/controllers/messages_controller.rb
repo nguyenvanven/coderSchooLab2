@@ -10,8 +10,10 @@ class MessagesController < ApplicationController
 
   def create
   	if params[:receiver].present? and params[:text].present?
-  		Message.create(receiver_id:params[:receiver], sender_id:current_user.id, text:params[:text])
-  		flash[:success] = "Your message has been sent"
+      params[:receiver].each do |receiver|
+  		  Message.create(receiver_id:receiver, sender_id:current_user.id, text:params[:text])
+  		  flash[:success] = "Your message has been sent"
+      end
   		redirect_to messages_view_sent_messages_path
   	else
   		flash[:error] = "please enter message"

@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   def self.users_are_not_already_friends (current_user)
     if current_user.friends.present?
-	   User.where("(id not in (?) is) and (id != ?)", current_user.friends.map {|friend| friend.id}, current_user.id)
+	   User.where("(id not in (?)) and (id != ?)", current_user.friend_ids, current_user.id)
    else
     User.where("(id != ?)", current_user.id)
    end

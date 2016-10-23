@@ -5,7 +5,7 @@
 		<%= form_tag messages_path, method:'post' %>
 		<div class="row">
 			<%= label_tag "Receiver: "%>
-			<%= select_tag :receiver, options_from_collection_for_select(@users,"id","full_name") %>
+			<%= select_tag :receiver, options_from_collection_for_select(@users,"id","full_name"), :multiple => true, :size=>2, :class => "chzn-select" %>
 		</div>
 		<div class="row">
 			<%= label_tag "Content" %>
