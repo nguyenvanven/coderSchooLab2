@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root 'users#index'
   get 'messages/index'
   get 'login' =>'sessions#new'
+  post '/auth/:provider/callback' => 'sessions#create'
   post 'login_submit' => 'sessions#create'
   get 'logout' => 'sessions#destroy'
   resources :users

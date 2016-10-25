@@ -17,7 +17,7 @@
     <div class="nav navbar-nav">
       <% if signed_in? and current_user.present? %>
       <%= link_to current_user.first_name + current_user.last_name, messages_path, class: "nav-link nav-item glyphicon glyphicon-user" %>
-      
+
       <%= link_to "Messages", messages_path, class: "nav-link nav-item" %>
       <%= link_to "Log out", logout_path, class: "nav-link nav-item" %>
       <% else %>
